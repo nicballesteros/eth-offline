@@ -10,7 +10,7 @@
       v-model="mnemonic"
     ></textarea>
     <div v-if="wallet !== undefined">
-      <WalletList wallet="wallet" derivation-path="derevationPath"/>
+      <WalletList :wallet="wallet" @wallet="(e) => $emit('wallet', e)"/>
     </div>
   </div>
 </template>
