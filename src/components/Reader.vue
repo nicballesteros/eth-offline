@@ -14,11 +14,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { QrcodeStream } from 'vue-qrcode-reader';
+import type { DetectedBarcode } from 'barcode-detector/pure';
 
 const showReader = ref(false);
 const data = ref('');
 
-function onDetect(d) {
+function onDetect(d: DetectedBarcode[]) {
   const [rd] = d;
 
   data.value = rd.rawValue;
