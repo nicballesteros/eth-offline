@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center gap-4">
+  <div class="flex flex-col items-center gap-4 mb-12">
     <Reader />
     <Mnemonic @wallet="updateWallet"/>
     <Signer :wallet="wallet" v-if="wallet !== undefined"/>
@@ -14,7 +14,6 @@ import { ref } from 'vue';
 import Mnemonic from './components/Mnemonic.vue';
 import Signer from './components/Signer.vue';
 import Reader from './components/Reader.vue';
-import Writer from './components/Writer.vue';
 
 const wallet: Ref<Wallet | undefined> = ref(undefined);
 
