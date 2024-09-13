@@ -1,61 +1,15 @@
 # eth-offline
 
-This template should help get you started developing with Vue 3 in Vite.
+A standalone HTML file that can parse a bip39 seed into derived wallet accounts.
 
-## Recommended IDE Setup
+Best for use on an air-gapped computer. Can be used to sign any type of message.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Multi-sig Smart Contracts
 
-## Type Support for `.vue` Imports in TS
+This tool is useful for Multi-Sig Smart Contracts. These smart contracts require multiple addresses to sign a transaction. Validation is usually done by signing a hash.
+Read the hash with the built in QR Code Reader and sign it with this tool and receive an output QR code to send back to your online computer.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## TailsOS
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+When used with TailsOS, the installed browsers do not give access to the camera for security reasons. Firefox or Chromium can be installed as additional software.
+Set up persistant storage, run `sudo apt update`, run `sudo apt install chromium`, and save this HTML file in the persistant file system for access at any time.

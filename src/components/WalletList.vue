@@ -39,9 +39,10 @@
       <button class="p-1 border border-1 border-black rounded hover:border-2"
         @click="hidePrivate = !hidePrivate">Toggle Show Private</button>
     </div>
-    <div v-for="wallet in wallets" :key="wallet.getPrivateKeyString()"
-      class="flex justify-between align-items-center hover:cursor-pointer gap-2"
+    <div v-for="(wallet, index) in wallets" :key="wallet.getPrivateKeyString()"
+      class="flex justify-between items-center hover:cursor-pointer gap-2"
     >
+      <p>{{ index }}</p>
       <input type="radio" :value="wallet" v-model="selectedWallet">
       <p @click="() => selectedWallet = wallet">{{ wallet.getAddressString() }}</p>
       <Writer :data="wallet.getAddressString()"/>
@@ -66,7 +67,7 @@ const account = ref(0);
 const change = ref(0);
 const addressIndex = ref(0);
 
-const hidePrivate = ref(false);
+const hidePrivate = ref(true);
 
 const derivationPath = computed(() => `m/${purpose.value}'/${coinType.value}'/${account.value}'/${change.value}/${addressIndex.value}`);
 
@@ -74,7 +75,7 @@ const props = defineProps(['wallet']);
 const wallet = props.wallet as EthereumHDKey;
 
 const numAddresses = ref(10);
-const selectedWallet: Ref<Wallet | undefined> = ref(undefined);
+let selectedWallet: Ref<Wallet | undefined> = ref(undefined);
 
 let wallets: Ref<Wallet[]> = ref([]);
 
@@ -92,14 +93,10 @@ watchEffect(() => {
 });
 
 watchEffect(() => {
-  // nextTick(() => {
-    if (selectedWallet.value === undefined) {
-      return;
-    }
+  if (selectedWallet.value === undefined) {
+    return;
+  }
 
-    console.log(selectedWallet.value?.getPrivateKeyString());
-
-    emit('wallet', selectedWallet.value);
-  // });
+  emit('wallet', selectedWallet.value);
 });
 </script>

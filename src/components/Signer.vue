@@ -17,19 +17,22 @@
 
 <script setup lang="ts">
 import { ecsign, toRpcSig, hexToBytes } from '@ethereumjs/util';
-import type { Wallet } from '@ethereumjs/wallet';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Writer from './Writer.vue';
+import type {Wallet} from '@ethereumjs/wallet';
 
 const props = defineProps(['wallet']);
-const wallet = props.wallet as Wallet;
+const wallet = computed(() => props.wallet as Wallet | undefined);
 
 const message = ref('');
 const output = ref('');
 
 function signMessage() {
-  const { r, s, v } = ecsign(Buffer.from(hexToBytes(message.value)), wallet.getPrivateKey());
-  console.log(wallet.getPrivateKeyString());
+  if (wallet.value === undefined) {
+    return;
+  }
+
+  const { r, s, v } = ecsign(Buffer.from(hexToBytes(message.value)), wallet.value.getPrivateKey());
 
   output.value = toRpcSig(v, r, s);
 }

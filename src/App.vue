@@ -7,21 +7,17 @@
 </template>
 
 <script setup lang="ts">
-import type { Wallet } from '@ethereumjs/wallet';
 import type { Ref } from 'vue';
 import { ref } from 'vue';
 
 import Mnemonic from './components/Mnemonic.vue';
 import Signer from './components/Signer.vue';
 import Reader from './components/Reader.vue';
+import type { Wallet } from '@ethereumjs/wallet';
 
-const wallet: Ref<Wallet | undefined> = ref(undefined);
+let wallet: Ref<Wallet | undefined> = ref(undefined);
 
 function updateWallet(w: Wallet) {
-  if (w === undefined) {
-    return;
-  }
-
   wallet.value = w;
 }
 </script>
