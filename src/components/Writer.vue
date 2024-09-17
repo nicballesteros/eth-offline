@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import VueQRcode, { type QRCodeValue } from 'vue-qrcode';
 
 const props = defineProps(['data']);
-const data = props.data as QRCodeValue;
+const data = computed(() => props.data as QRCodeValue);
 
 const showQR = ref(false);
 </script>
